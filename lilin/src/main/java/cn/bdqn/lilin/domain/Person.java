@@ -1,18 +1,22 @@
 package cn.bdqn.lilin.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.annotation.Persistent;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 
 @Entity
 @Table
+@Document
 @JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
 public class Person implements Serializable {
-	@Id 
+	@Id
+	@org.springframework.data.annotation.Id
 	@GeneratedValue
 	private Long id;
 	
@@ -21,10 +25,18 @@ public class Person implements Serializable {
 	private Integer age;
 	
 	private String address;
-	
+
+	@Field("locs")
+	@Transient
+	private Collection<Location> locations =  new LinkedHashSet<Location>();
 	
 	public Person() {
 		super();
+	}
+	public Person(String name, Integer age) {
+		super();
+		this.name = name;
+		this.age = age;
 	}
 	public Person(Long id, String name, Integer age, String address) {
 		super();
@@ -58,5 +70,11 @@ public class Person implements Serializable {
 		this.address = address;
 	}
 
+	public Collection<Location> getLocations() {
+		return locations;
+	}
 
+	public void setLocations(Collection<Location> locations) {
+		this.locations = locations;
+	}
 }
