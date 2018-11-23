@@ -7,16 +7,15 @@ import java.util.List;
 import cn.bdqn.lilin.dao.PersonMongo;
 import cn.bdqn.lilin.domain.Location;
 import cn.bdqn.lilin.domain.Person;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 
 @RestController
 public class DataController {
 	
-	@Resource
+	@Autowired
 	PersonMongo personMongo;
 	
 	@RequestMapping("/save")
@@ -37,7 +36,7 @@ public class DataController {
 	}
 	
 	@RequestMapping("/q1")
-	public Person q1(String name){
+	public List<Person> q1(String name){
 		return personMongo.findByName(name);
 	}
 	

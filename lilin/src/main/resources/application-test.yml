@@ -1,0 +1,14 @@
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mybatis/**/*Mapper.xml
+  typeAliasesPackage: cn.bdqn.lilin.**.domain
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  params: true
+  page-size-zero: count=countSql
+logging:
+  level:
+    root: info
+    cn.bdqn: debug

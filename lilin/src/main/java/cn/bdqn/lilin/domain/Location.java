@@ -1,7 +1,7 @@
 package cn.bdqn.lilin.domain;
 
 public class Location {
-	
+
 	private String place;
 	
 	private String year;
