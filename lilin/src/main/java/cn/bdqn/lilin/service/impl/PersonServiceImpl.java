@@ -19,7 +19,6 @@ public class PersonServiceImpl implements PersonService {
     public Person save(Person person) {
         int p = personMapper.insertSelective(person);
         System.out.println("为id、key为:"+person.getId()+"数据做了缓存");
-
         return person;
     }
 
